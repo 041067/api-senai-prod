@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Produtos",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/produtos": {
+      "get": {
+        "summary": "Listar todos os produtos",
+        "responses": {
+          "200": {
+            "description": "Lista de produtos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo produto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "id": 1,
+                "nome": "Mouse",
+                "preco": 100
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado"
+          }
+        }
+      }
+    },
+    "/api/produtos/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Buscar produto por ID",
+        "responses": {
+          "200": { "description": "Produto encontrado" },
+          "404": { "description": "Produto não encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Atualizar produto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "id": 1,
+                "nome": "Mouse Atualizado",
+                "preco": 150
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Atualizado com sucesso" },
+          "404": { "description": "Produto não encontrado" }
+        }
+      },
+      "delete": {
+        "summary": "Excluir produto",
+        "responses": {
+          "204": { "description": "Excluído com sucesso" },
+          "404": { "description": "Produto não encontrado" }
+        }
+      }
+    }
+  }
+}
